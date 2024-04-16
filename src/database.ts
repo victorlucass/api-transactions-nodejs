@@ -4,10 +4,13 @@ import { knex as setupKnex, Knex } from 'knex'
 import { env } from './env'
 
 export const config: Knex.Config = {
-  client: 'sqlite3', // qual o banco?
-  connection: {
-    filename: env.DATABASE_URL, // No caso do SQLite3, o nome do arquivo
-  },
+  client: env.DATABASE_CLIENT, // qual o banco?
+  connection:
+    env.DATABASE_CLIENT === 'sqlite'
+      ? {
+          filename: env.DATABASE_URL, // No caso do SQLite3, o nome do arquivo
+        }
+      : env.DATABASE_URL,
   useNullAsDefault: true, // usar o null como valor padrao
   migrations: {
     extension: 'ts',
