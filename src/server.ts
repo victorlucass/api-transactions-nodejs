@@ -6,5 +6,5 @@ app
     port: env.PORT,
   })
   .then(() => {
-    console.log('HTTP server running on http://localhost:3333')
+    console.log('HTTP server running 🚀')
   })
